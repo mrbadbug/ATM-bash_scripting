@@ -1,1 +1,7 @@
 
+# Bash scripting improvements / utilities
+bash                   # core shell scripting language
+coreutils              # essential Unix command‑line utilities
+sed                    # stream editor for filtering and transforming text
+awk                    # pattern scanning and processing language
+grep                   # text search utility
