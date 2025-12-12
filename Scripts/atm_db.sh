@@ -1,8 +1,6 @@
 #!/bin/bash
-
 DB_NAME="atm.db"
 
-# Create database and users table
 sqlite3 $DB_NAME <<EOF
 CREATE TABLE IF NOT EXISTS users (
     account_number TEXT PRIMARY KEY,
