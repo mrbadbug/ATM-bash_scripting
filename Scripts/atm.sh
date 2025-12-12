@@ -1,42 +1,34 @@
-#!/bin/bash
-
 DB_NAME="atm.db"
-HASH_PYTHON_SCRIPT="hash_pin.py"  # Python script to hash the PIN
+HASH_PYTHON_SCRIPT="hash_pin.py"  
 
-# Function to check if user exists and PIN matches
 authenticate() {
     local account_number=$1
     local pin=$2
     local hashed_pin=$(python3 $HASH_PYTHON_SCRIPT "$pin")
 
-    # Query the database to check if the account and PIN match
     result=$(sqlite3 $DB_NAME "SELECT pin FROM users WHERE account_number = '$account_number'")
 
     if [ "$result" == "$hashed_pin" ]; then
-        return 0  # Success
+        return 0 
     else
-        return 1  # Failure
+        return 1 
     fi
 }
 
-# Function to get balance
 get_balance() {
     local account_number=$1
     sqlite3 $DB_NAME "SELECT balance FROM users WHERE account_number = '$account_number'"
 }
 
-# Function to update balance
 update_balance() {
     local account_number=$1
     local amount=$2
     local transaction_type=$3
 
-    # Update user balance and insert transaction
     sqlite3 $DB_NAME "UPDATE users SET balance = balance + $amount WHERE account_number = '$account_number'"
     sqlite3 $DB_NAME "INSERT INTO transactions (account_number, type, amount) VALUES ('$account_number', '$transaction_type', $amount)"
 }
 
-# Function to withdraw money
 withdraw() {
     local account_number=$1
     local amount=$2
@@ -50,7 +42,6 @@ withdraw() {
     fi
 }
 
-# Function to deposit money
 deposit() {
     local account_number=$1
     local amount=$2
@@ -58,7 +49,6 @@ deposit() {
     echo "Deposit successful. New balance: $(get_balance "$account_number")"
 }
 
-# Function to create new user
 create_user() {
     echo "Enter new account number: "
     read account_number
@@ -66,12 +56,10 @@ create_user() {
     read -s pin
     hashed_pin=$(python3 $HASH_PYTHON_SCRIPT "$pin")
 
-    # Create a new account with initial balance of $100
     sqlite3 $DB_NAME "INSERT INTO users (account_number, pin, balance) VALUES ('$account_number', '$hashed_pin', 100.0)"
     echo "Account created successfully! Initial balance: $100"
 }
 
-# Main function to handle ATM menu
 main() {
     echo "Welcome to the ATM!"
     echo "Do you have an account? (yes/no)"
