@@ -1,3 +1,4 @@
+#!/bin/bash
 DB_NAME="atm.db"
 HASH_PYTHON_SCRIPT="hash_pin.py"  
 
