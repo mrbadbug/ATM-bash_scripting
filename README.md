@@ -21,3 +21,4 @@ making deposits, and more — entirely via shell scripting on Unix/Linux.
    ```bash
    git clone https://github.com/mrbadbug/ATM‑bash_scripting.git
    cd ATM‑bash_scripting
+   pin_hash=$(python3 Scripts/hash_pin.py "$pin")
