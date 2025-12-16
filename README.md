@@ -21,4 +21,13 @@ making deposits, and more — entirely via shell scripting on Unix/Linux.
    ```bash
    git clone https://github.com/mrbadbug/ATM‑bash_scripting.git
    cd ATM‑bash_scripting
-   pin_hash=$(python3 Scripts/hash_pin.py "$pin")
+
+2. Link the project with database and pin_hashing
+   ```bash   
+   python3 Scripts/hash_pin.py "$pin"
+   hashed_pin=$(python3 "$HASH_PYTHON_SCRIPT" "$pin")
+   sqlite3 atm.db
+   sqlite3 "$DB_NAME" "SELECT balance FROM users WHERE account_number='$account_number';"
+   
+
+   
