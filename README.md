@@ -1,5 +1,4 @@
 # ATM‑bash_scripting
-
 A set of Bash shell scripts that simulate an Automated Teller Machine (ATM) interface,
 allowing users to perform banking operations such as viewing balance, withdrawing money,
 making deposits, and more — entirely via shell scripting on Unix/Linux.
