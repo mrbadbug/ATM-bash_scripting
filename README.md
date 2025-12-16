@@ -27,7 +27,7 @@ making deposits, and more — entirely via shell scripting on Unix/Linux.
    sqlite3 atm.db
    python3 Scripts/hash_pin.py "$pin"
    hashed_pin=$(python3 "$HASH_PYTHON_SCRIPT" "$pin")
-3.Read/Update balance, Verify pin
+3. Read/Update balance, Verify pin
    ```bash
    balance=$(sqlite3 "$DB_NAME" "SELECT balance FROM users WHERE account_number='$account_number';")
    sqlite3 "$DB_NAME" "UPDATE users SET balance = balance + $amount WHERE account_number='$account_number';"
