@@ -26,8 +26,10 @@ making deposits, and more — entirely via shell scripting on Unix/Linux.
    ```bash   
    python3 Scripts/hash_pin.py "$pin"
    hashed_pin=$(python3 "$HASH_PYTHON_SCRIPT" "$pin")
+   bash atm_db.sh   
    sqlite3 atm.db
-   sqlite3 "$DB_NAME" "SELECT balance FROM users WHERE account_number='$account_number';"
+   
+
    
 
    
